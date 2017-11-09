@@ -1,0 +1,15 @@
+Source: systemd-zram
+Section: admin
+Priority: optional
+Maintainer: Manuel Domínguez López <mdomlop@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.8
+Homepage: https://github.com/mdomlop/systemd-zram
+
+Package: systemd-zram
+Architecture: all
+Provides: systemd-zram
+Conflicts: systemd-zram-git
+Depends:
+Description: Systemd zRAM loader
+ Use a portion of your RAM as swap.

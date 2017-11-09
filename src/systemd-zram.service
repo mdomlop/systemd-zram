@@ -1,0 +1,11 @@
+[Unit]
+Description=zRAM block devices swapping
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemd-zram start
+ExecStop=/usr/bin/systemd-zram stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
