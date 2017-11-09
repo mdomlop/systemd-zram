@@ -4,22 +4,23 @@ Systemd zRAM service
 Use a part of your RAM as compressed swap.
 
 
-[zram](https://en.wikipedia.org/wiki/Main_Page) is a Linux kernel feature that
-provides a form of virtual memory compression. zram increases performance by
-avoiding paging to disk and using a compressed block device in RAM instead,
-inside which paging takes place until it is necessary to use the swap space on
-a hard disk drive. Since using zram is an alternative way to provide swapping
-on RAM, zram allows Linux to make a better use of RAM when swapping/paging is
-required, especially on older computers with less RAM installed.
+[`zram`](https://en.wikipedia.org/wiki/Main_Page) is a Linux kernel feature
+that provides a form of virtual memory compression. `zram` module increases
+performance by avoiding paging to disk and using a compressed block device in
+RAM instead, inside which paging takes place until it is necessary to use the
+swap space on a hard disk drive. Since using `zram` is an alternative way to
+provide swapping on RAM, `zram` allows Linux to make a better use of RAM when
+swapping/paging is required, especially on older computers with less RAM
+installed.
 
-This program provides a systemd service to automatically start such feature at
-system boot.
+This program provides a systemd service to automatically loads and configure
+such module at system boot.
 
 
 Installation
 ------------
 
-You can choose between different installation methods. Note that uninstallation 
+You can choose between different installation methods. Note that uninstallation
 don't removes active zram disk.
 
 ### Classic method ###
