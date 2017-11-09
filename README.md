@@ -13,7 +13,7 @@ provide swapping on RAM, `zram` allows Linux to make a better use of RAM when
 swapping/paging is required, especially on older computers with less RAM
 installed.
 
-This program provides a systemd service to automatically loads and configure
+This program provides a systemd service to automatically load and configure
 such module at system boot.
 
 
