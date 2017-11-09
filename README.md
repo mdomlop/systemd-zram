@@ -4,7 +4,7 @@ Systemd zRAM service
 Use a part of your RAM as compressed swap.
 
 
-[`zram`](https://en.wikipedia.org/wiki/Main_Page) is a Linux kernel feature
+[`zram`](https://en.wikipedia.org/wiki/Zram) is a Linux kernel feature
 that provides a form of virtual memory compression. `zram` module increases
 performance by avoiding paging to disk and using a compressed block device in
 RAM instead, inside which paging takes place until it is necessary to use the
