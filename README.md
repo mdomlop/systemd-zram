@@ -45,6 +45,19 @@ don't removes active zram disk.
 
         # apt purge systemd-zram
 
+
+### Arch Linux package
+
+- Build and install:
+
+        $ make pacman
+        # pacman -U systemd-zram-local-*.pkg.tar.xz
+
+- Uninstall:
+
+        # pacman -Rsc systemd-zram
+
+
 Usage
 -----
 

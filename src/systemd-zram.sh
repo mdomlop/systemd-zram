@@ -6,7 +6,8 @@
 # Distributed under the GPL version 3 or above, see terms at
 #      https://gnu.org/licenses/gpl-3.0.txt
 
-PROGRAM_NAME='systemd-zram'
+EXECUTABLE_NAME='systemd-zram'
+PROGRAM_NAME='Systemd zRAM'
 DESCRIPTION='Use compressed RAM as in-memory swap'
 VERSION='0.1b'
 AUTHOR='Antonio Galea'  # See AUTHORS file
