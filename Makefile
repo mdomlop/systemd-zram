@@ -12,7 +12,7 @@ TIMESTAMP = $(shell LC_ALL=C date '+%a, %d %b %Y %T %z')
 
 
 ChangeLog: changelog.in
-	@echo "$(PROGRAM_NAME) ($(VERSION)) unstable; urgency=medium" > $@
+	@echo "$(EXECUTABLE_NAME) ($(VERSION)) unstable; urgency=medium" > $@
 	@echo >> $@
 	@echo "  * Git build." >> $@
 	@echo >> $@

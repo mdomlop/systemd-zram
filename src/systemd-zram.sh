@@ -10,8 +10,8 @@ EXECUTABLE_NAME='systemd-zram'
 PROGRAM_NAME='Systemd zRAM'
 DESCRIPTION='Use compressed RAM as in-memory swap'
 VERSION='0.1b'
-AUTHOR='Antonio Galea'  # See AUTHORS file
-MAIL='antonio.galea@gmail.com'
+AUTHOR='Manuel Domínguez López'  # See AUTHORS file
+MAIL='mdomlop@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
 
 FRACTION=75
