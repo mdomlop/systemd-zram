@@ -4,20 +4,14 @@ _pkgver_year=2018
 _pkgver_month=01
 _pkgver_day=09
 
-_name=systemd-zram
-_gitname=${name}-git
-
-pkgname=${_name}-local
+pkgname=systemd-zram
 pkgver=0.1b
 pkgrel=1
 pkgdesc="Systemd zRAM loader."
-url="https://github.com/mdomlop/${_name}.git"
+url="https://github.com/mdomlop/$pkgname"
 source=()
-md5sums=('SKIP')
 license=('GPL3')
 arch=('any')
-conflicts=(${_name} ${_gitname})
-provides=($_name)
 
 
 build() {
@@ -27,5 +21,5 @@ build() {
 
 package() {
     cd "$startdir"
-    make arch_install DESTDIR=${pkgdir}
+    make arch_install DESTDIR="$pkgdir"
 }
