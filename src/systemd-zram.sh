@@ -30,7 +30,7 @@ case "$1" in
     if [ `grep -c "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm` -eq 0 ]; then
         echo 'warning: unsupported compression algorithm used, falling back to lzo'
         COMP_ALGORITHM='lzo'
-    fi;
+    fi
 
     for n in `seq $CPUS`; do
       i=$((n - 1))
