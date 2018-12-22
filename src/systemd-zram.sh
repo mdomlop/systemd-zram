@@ -9,28 +9,37 @@
 EXECUTABLE_NAME='systemd-zram'
 PROGRAM_NAME='Systemd zRAM'
 DESCRIPTION='Use compressed RAM as in-memory swap'
-VERSION='0.1b'
+VERSION='0.2b'
 AUTHOR='Manuel Domínguez López'  # See AUTHORS file
 MAIL='mdomlop@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
 
-FRACTION=75
-COMP_ALGORITHM='lzo'
+# You can change the compression algorithm and the fraction number editing the
+# systemd service.
+DEF_FRACTION=75
+DEF_COMP_ALGORITHM='lzo'
 
-#MEMORY=`perl -ne'/^MemTotal:\s+(\d+)/ && print $1*1024;' < /proc/meminfo`
+
+test -z $FRACTION && FRACTION=$DEF_FRACTION
+test -z $COMP_ALGORITHM && COMP_ALGORITHM=$DEF_COMP_ALGORITHM
+
 MEMORY=`grep ^MemTotal: /proc/meminfo | awk '{print $2}'`
 CPUS=`nproc`
 SIZE=$(( MEMORY * FRACTION / 100 / CPUS ))
+
+fallback() {
+    echo -n 'Warning: Unsupported compression algorithm selected: '
+    echo -n $COMP_ALGORITHM
+    echo ', falling back to lzo.'
+    COMP_ALGORITHM='lzo'
+}
 
 case "$1" in
   "start")
     modprobe zram num_devices=$CPUS
 
     # Check compression algorithm support
-    if [ `grep -c "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm` -eq 0 ]; then
-        echo 'warning: unsupported compression algorithm used, falling back to lzo'
-        COMP_ALGORITHM='lzo'
-    fi
+    grep -qw "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm || fallback
 
     for n in `seq $CPUS`; do
       i=$((n - 1))

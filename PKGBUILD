@@ -5,19 +5,14 @@ _pkgver_month=01
 _pkgver_day=09
 
 pkgname=systemd-zram
-pkgver=0.1b
+pkgver=0.2b
 pkgrel=1
 pkgdesc="Systemd zRAM loader."
 url="https://github.com/mdomlop/$pkgname"
 source=()
 license=('GPL3')
 arch=('any')
-
-
-build() {
-    cd "$startdir"
-    make
-    }
+changelog=ChangeLog
 
 package() {
     cd "$startdir"
