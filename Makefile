@@ -1,5 +1,5 @@
-PREFIX = '/usr'
-DESTDIR = ''
+PREFIX=/usr
+DESTDIR=
 DOCS= ChangeLog README.md AUTHORS THANKS
 EXECUTABLE_NAME := $(shell grep ^EXECUTABLE_NAME src/systemd-zram.sh | cut -d\' -f2)
 PROGRAM_NAME := $(shell grep ^PROGRAM_NAME src/systemd-zram.sh | cut -d\' -f2)
@@ -21,20 +21,20 @@ ChangeLog: changelog.in
 	@cat $^ >> $@
 
 install: $(DOCS)
-	install -d -m 755 $(DESTDIR)$(PREFIX)/share/doc/systemd-zram
-	install -Dm 644 $^ $(DESTDIR)$(PREFIX)/share/doc/systemd-zram
-	install -Dm 755 src/systemd-zram.sh $(DESTDIR)$(PREFIX)/bin/systemd-zram
-	install -d -m 755 $(DESTDIR)$(PREFIX)/share/licenses/systemd-zram
-	install -Dm 644 LICENSE $(DESTDIR)$(PREFIX)/share/licenses/systemd-zram/COPYING
-	install -Dm 644 src/systemd-zram.service $(DESTDIR)/lib/systemd/system/systemd-zram.service
+	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/systemd-zram"
+	install -Dm 644 $^ "$(DESTDIR)$(PREFIX)/share/doc/systemd-zram"
+	install -Dm 755 src/systemd-zram.sh "$(DESTDIR)$(PREFIX)/bin/systemd-zram"
+	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/licenses/systemd-zram"
+	install -Dm 644 LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/systemd-zram/COPYING"
+	install -Dm 644 src/systemd-zram.service "$(DESTDIR)/lib/systemd/system/systemd-zram.service"
 
 arch_install: $(DOCS)
-	install -d -m 755 $(DESTDIR)$(PREFIX)/share/doc/systemd-zram
-	install -Dm 644 $^ $(DESTDIR)$(PREFIX)/share/doc/systemd-zram
-	install -Dm 755 src/systemd-zram.sh $(DESTDIR)$(PREFIX)/bin/systemd-zram
-	install -d -m 755 $(DESTDIR)$(PREFIX)/share/licenses/systemd-zram
-	install -Dm 644 LICENSE $(DESTDIR)$(PREFIX)/share/licenses/systemd-zram/COPYING
-	install -Dm 644 src/systemd-zram.service $(DESTDIR)$(PREFIX)/lib/systemd/system/systemd-zram.service
+	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/doc/systemd-zram"
+	install -Dm 644 $^ "$(DESTDIR)$(PREFIX)/share/doc/systemd-zram"
+	install -Dm 755 src/systemd-zram.sh "$(DESTDIR)$(PREFIX)/bin/systemd-zram"
+	install -d -m 755 "$(DESTDIR)$(PREFIX)/share/licenses/systemd-zram"
+	install -Dm 644 LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/systemd-zram/COPYING"
+	install -Dm 644 src/systemd-zram.service "$(DESTDIR)$(PREFIX)/lib/systemd/system/systemd-zram.service"
 
 
 uninstall:
