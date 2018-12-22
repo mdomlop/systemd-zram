@@ -14,7 +14,7 @@ AUTHOR='Manuel Domínguez López'  # See AUTHORS file
 MAIL='mdomlop@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
 
-FRACTION=50
+FRACTION=75
 COMP_ALGORITHM='lzo'
 
 #MEMORY=`perl -ne'/^MemTotal:\s+(\d+)/ && print $1*1024;' < /proc/meminfo`
