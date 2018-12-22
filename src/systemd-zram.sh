@@ -15,19 +15,27 @@ MAIL='mdomlop@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
 
 FRACTION=75
+COMP_ALGORITHM='lzo'
 
 #MEMORY=`perl -ne'/^MemTotal:\s+(\d+)/ && print $1*1024;' < /proc/meminfo`
-MEMORY=`grep ^MemTotal: /proc/meminfo | awk '{print $2 * 1024}'`
+MEMORY=`grep ^MemTotal: /proc/meminfo | awk '{print $2}'`
 CPUS=`nproc`
 SIZE=$(( MEMORY * FRACTION / 100 / CPUS ))
 
 case "$1" in
   "start")
-    param=`modinfo zram|grep num_devices|cut -f2 -d:|tr -d ' '`
-    modprobe zram $param=$CPUS
+    modprobe zram num_devices=$CPUS
+
+    # Check compression algorithm support
+    if [ `grep -c "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm` -eq 0 ]; then
+        echo 'warning: unsupported compression algorithm used, falling back to lzo'
+        COMP_ALGORITHM='lzo'
+    fi
+
     for n in `seq $CPUS`; do
       i=$((n - 1))
-      echo $SIZE > /sys/block/zram$i/disksize
+      echo $COMP_ALGORITHM > /sys/block/zram$i/comp_algorithm
+      echo ${SIZE}K > /sys/block/zram$i/disksize
       mkswap /dev/zram$i
       swapon /dev/zram$i -p 10
     done
