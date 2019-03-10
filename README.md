@@ -16,6 +16,9 @@ installed.
 This program provides a systemd service to automatically load and configure
 such module at system boot.
 
+You can choose compression algorithm by editing systemd service. To see available 
+algorithms do `cat /sys/block/zram0/comp_algorithm`.
+
 
 Installation
 ------------
@@ -38,7 +41,7 @@ don't removes active zram disk.
 
 - Build and install:
 
-        $ make deb
+        $ make debian_pkg
         # dpkg -i systemd-zram_*.deb
 
 - Uninstall:
@@ -50,8 +53,8 @@ don't removes active zram disk.
 
 - Build and install:
 
-        $ make pacman
-        # pacman -U systemd-zram-local-*.pkg.tar.xz
+        $ make arch_pkg
+        # pacman -U systemd-zram-*.pkg.tar.xz
 
 - Uninstall:
 
