@@ -5,6 +5,9 @@ EXECUTABLE_NAME := $(shell grep ^EXECUTABLE_NAME src/systemd-zram.sh | cut -d\' 
 VERSION := $(shell grep ^VERSION src/systemd-zram.sh | cut -d\' -f2)
 LICENSE := $(shell grep ^LICENSE src/systemd-zram.sh | cut -d\' -f2)
 
+DEBIANPKG = $(EXECUTABLE_NAME)_$(VERSION)_all.deb
+ARCHPKG = $(EXECUTABLE_NAME)-$(VERSION)-1-any.pkg.tar.xz
+
 default:
 	@echo Nothing to do. Just run make install or make arch_install.
 
@@ -34,21 +37,29 @@ uninstall:
 clean:
 	rm -rf *.xz *.gz *.tgz *.deb *.rpm /tmp/tmp.*.systemd-zram debian/changelog debian/README debian/files debian/systemd-zram debian/debhelper-build-stamp debian/systemd-zram* pkg
 
-debian_pkg: ChangeLog README.md
-	cp README.md debian/README
-	cp ChangeLog debian/changelog
+debian_pkg: $(DEBIANPKG)
+
+debian/README: README.md
+	cp $^ $@
+
+debian/changelog: ChangeLog
+	cp $^ $@
+
+$(DEBIANPKG): debian/README debian/changelog
 	#fakeroot debian/rules clean
 	#fakeroot debian/rules build
 	fakeroot debian/rules binary
-	mv ../systemd-zram_$(VERSION)_all.deb .
+	mv ../$@ .
 	@echo Package done!
 	@echo You can install it as root with:
-	@echo dpkg -i systemd-zram_$(VERSION)_all.deb
+	@echo dpkg -i $@
 
-arch_pkg: clean
+arch_pkg: $(ARCHPKG)
+
+$(ARCHPKG): clean
 	sed -i "s|_name=.*|_name=$(EXECUTABLE_NAME)|" PKGBUILD
 	sed -i "s|pkgver=.*|pkgver=$(VERSION)|" PKGBUILD
-	makepkg -e
+	makepkg -d
 	@echo Package done!
 	@echo You can install it as root with:
-	@echo pacman -U $(EXECUTABLE_NAME)-$(VERSION)-1-any.pkg.tar.xz
+	@echo pacman -U $@
