@@ -71,7 +71,7 @@ To stop it:
 
 If you want to enable zram at boot, just run as root:
 
-        # systemctel enable systemd-zram
+        # systemctl enable systemd-zram
 
 And for disable it at boot:
 
