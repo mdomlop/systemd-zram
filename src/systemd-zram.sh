@@ -40,7 +40,7 @@ fallback_perc() {
 }
 
 #abort_execution() {
-#    echo 'Sorry: systemd-zram.service is active. Stop it before executing me.'
+    #echo 'Sorry: systemd-zram.service is active. Stop it before executing me.'
     #exit 1
 #}
 
