@@ -1,9 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: snapman
-Source: https://github.com/mdomlop/snapman
+Upstream-Name: systemd-zram
+Source: https://github.com/mdomlop/systemd-zram
 
 Files: debian/*
-Copyright: 2017 Manuel Domínguez López <mdomlop@gmail.com>
+Copyright: 2018 Manuel Domínguez López <mdomlop@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+
