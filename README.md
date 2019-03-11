@@ -56,6 +56,10 @@ don't removes active zram disk.
         $ make arch_pkg
         # pacman -U systemd-zram-*.pkg.tar.xz
 
+Alternatively you can install it from AUR:
+
+        $ trizen -S systemd-zram
+
 - Uninstall:
 
         # pacman -Rsc systemd-zram
