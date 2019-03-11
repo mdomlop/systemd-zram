@@ -9,7 +9,7 @@
 EXECUTABLE_NAME='systemd-zram'
 PROGRAM_NAME='Systemd zRAM'
 DESCRIPTION='Use compressed RAM as in-memory swap'
-VERSION='0.2b'
+VERSION='1.0'
 AUTHOR='Manuel Domínguez López'  # See AUTHORS file
 MAIL='mdomlop@gmail.com'
 LICENSE='GPLv3+'  # Read LICENSE file.
@@ -27,18 +27,36 @@ MEMORY=`grep ^MemTotal: /proc/meminfo | awk '{print $2}'`
 CPUS=`nproc`
 SIZE=$(( MEMORY * FRACTION / 100 / CPUS ))
 
-fallback() {
+fallback_comp() {
     echo -n 'Warning: Unsupported compression algorithm selected: '
-    echo "$COMP_ALGORITHM, falling back to lzo."
-    COMP_ALGORITHM='lzo'
+    echo "$COMP_ALGORITHM, falling back to $DEF_COMP_ALGORITHM."
+    COMP_ALGORITHM=$DEF_COMP_ALGORITHM
 }
+
+fallback_perc() {
+    echo -n 'Warning: Invalid percent value selected: '
+    echo "$FRACTION, falling back to $DEF_FRACTION."
+    FRACTION=$DEF_FRACTION
+}
+
+#abort_execution() {
+#    echo 'Sorry: systemd-zram.service is active. Stop it before executing me.'
+    #exit 1
+#}
 
 case "$1" in
   "start")
+
+    # Check if systemd-zram.service is active
+    #systemctl is-active systemd-zram.service || abort_execution
+
+    # Check fraction value:
+    test "$FRACTION" -gt 0 -a "$FRACTION" -le 100 || fallback_perc
+
     modprobe zram num_devices=$CPUS
 
     # Check compression algorithm support
-    grep -qw "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm || fallback
+    grep -qw "$COMP_ALGORITHM" /sys/block/zram0/comp_algorithm || fallback_comp
 
     for n in `seq $CPUS`; do
       i=$((n - 1))
