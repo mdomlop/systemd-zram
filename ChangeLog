@@ -1,3 +1,11 @@
+systemd-zram (1.0) unstable; urgency=medium
+
+  * Release 1.0.
+
+    - Fallback to secure values.
+
+ -- Manuel Domínguez López <mdomlop@gmail.com>  Mon, 11 Mar 2019 10:16:07 +0100
+
 systemd-zram (0.2b) unstable; urgency=medium
 
   * Release 0.2b.
