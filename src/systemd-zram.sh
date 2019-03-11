@@ -29,8 +29,7 @@ SIZE=$(( MEMORY * FRACTION / 100 / CPUS ))
 
 fallback() {
     echo -n 'Warning: Unsupported compression algorithm selected: '
-    echo -n $COMP_ALGORITHM
-    echo ', falling back to lzo.'
+    echo "$COMP_ALGORITHM, falling back to lzo."
     COMP_ALGORITHM='lzo'
 }
 
