@@ -37,8 +37,9 @@ arch_install: $(DOCS)
 	install -Dm 644 src/$(EXECUTABLE_NAME).service "$(DESTDIR)$(PREFIX)/lib/systemd/system/$(EXECUTABLE_NAME).service"
 	install -Dm 644 man/$(EXECUTABLE_NAME).1.gz $(DESTDIR)$(PREFIX)/share/man/man1/$(EXECUTABLE_NAME).1.gz
 
-
 uninstall:
+	systemctl stop $(EXECUTABLE_NAME)
+	systemctl disable $(EXECUTABLE_NAME)
 	rm -f $(PREFIX)/bin/$(EXECUTABLE_NAME)
 	rm -f /lib/systemd/system/$(EXECUTABLE_NAME).service
 	rm -rf $(PREFIX)/share/licenses/$(EXECUTABLE_NAME)/
